@@ -1,0 +1,325 @@
+/* Import the Poppins font from Google Fonts. We're importing multiple weights (400, 500, 700) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/*
+  This is a modern CSS reset. It's a great starting point for any new project.
+  It ensures a more consistent baseline across different browsers.
+*/
+* {
+  box-sizing: border-box;
+}
+body, h1, h2, p, form {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+}
+img, picture {
+  max-width: 100%;
+  display: block;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* ========================================= */
+/*      NEW: CUSTOM PROPERTIES / VARIABLES   */
+/* ========================================= */
+
+/*
+  The :root pseudo-class selects the root element of the document (the <html> tag).
+  This is the perfect place to declare global CSS variables that we can reuse
+  throughout our entire application.
+*/
+:root {
+  /* Color Palette */
+  --color-primary-dark: #2c3e50;    /* A dark, slate blue for headers/accents */
+  --color-primary-light: #3498db;   /* A bright, clear blue for buttons/links */
+  --color-bg-main: #ecf0f1;         /* A very light grey for the main page background */
+  --color-bg-card: #ffffff;        /* Plain white for content cards/sections */
+  --color-text-dark: #34495e;       /* A dark, soft grey for primary text, easier on the eyes than pure black */
+  --color-text-light: #ffffff;      /* Pure white for text on dark backgrounds */
+  --color-border: #bdc3c7;          /* A subtle grey for borders */
+
+  /* Font Families */
+  --font-family-main: 'Poppins', sans-serif; /* Our primary font, with a fallback to a generic sans-serif */
+
+  /* Spacing & Borders */
+  --spacing-unit: 1rem; /* Base unit for margins, padding (e.g., 1rem, 1.5rem, 2rem) */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+}
+
+/* ========================================= */
+/*      NEW: GLOBAL BASE STYLES              */
+/* ========================================= */
+
+/*
+  Now, let's USE the variables we defined to set up some basic styles on the body.
+  This applies our chosen font and background color to the whole page.
+*/
+/* ... (Keep your @import, reset, and :root rules from the previous step) ... */
+
+/* ========================================= */
+/*      GLOBAL BASE STYLES              */
+/* ========================================= */
+
+body {
+  font-family: var(--font-family-main);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-dark);
+  line-height: 1.5; /* We can move the line-height from the reset to here */
+}
+
+/* ========================================= */
+/*      NEW: LAYOUT & CONTAINER STYLES       */
+/* ========================================= */
+
+/* Style the main header of the application */
+header {
+  /* Use our dark primary color for the background and light text for contrast */
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-light);
+
+  /* Add some padding using our spacing variable for a spacious look.
+     This adds 1rem of space on top/bottom and 2rem on left/right. */
+  padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+
+  /* A simple way to center the <h1> text within the header */
+  text-align: center;
+}
+
+/* Define the main layout grid */
+main {
+  /* 1. This is the magic! We declare the <main> element a grid container. */
+  display: grid;
+  
+  /* 2. Define the columns. We want a fixed-width left column for the search
+     and a flexible right column that takes up the rest of the space.
+     '300px' is a fixed width. '1fr' means "1 fraction of the available space". */
+  grid-template-columns: 300px 1fr;
+  
+  /* 3. Add a gap between the grid columns and rows using our spacing variable.
+     This is much better than using margins on the items themselves. */
+  gap: calc(var(--spacing-unit) * 2);
+
+  /* 4. Add some padding to the main container itself so our content doesn't
+     touch the edges of the browser window. */
+  padding: calc(var(--spacing-unit) * 2);
+   /* 1. Set a maximum width for our content. 1200px is a common and comfortable width. */
+  max-width: 1200px;
+
+  /* 2. Horizontally center the main container within the page. */
+  margin-inline: auto;
+}
+
+/* ... (Keep all your previous CSS code) ... */
+
+/* ========================================= */
+/*      NEW: FORM & SEARCH STYLES            */
+/* ========================================= */
+
+/* Target the text input field within the search section */
+.search-section input {
+  /* Make the input field take up the full width of its parent container (the form) */
+  width: 100%;
+
+  /* Use our spacing variable for padding inside the input. This makes it feel less cramped. */
+  padding: var(--spacing-unit);
+
+  /* Apply a subtle border using our predefined border color and radius */
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+
+  /* Add a smooth transition for properties like border-color and box-shadow */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* 
+  Style the input field when it's in the 'focus' state (i.e., when the user has clicked into it).
+  This is crucial for accessibility and user experience.
+*/
+.search-section input:focus {
+  /* Remove the default browser outline, which can be inconsistent */
+  outline: none;
+  
+  /* Apply a brighter border color from our palette to show it's active */
+  border-color: var(--color-primary-light);
+
+  /* Add a subtle "glow" effect (box-shadow) for a modern feel. */
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+/* Target the search button */
+.search-section button {
+  /* Make the button full-width as well */
+  width: 100%;
+  
+  /* Use 'display: block' to ensure it behaves predictably as a full-width element */
+  display: block;
+
+  /* Add some space between the input field and the button */
+  margin-top: var(--spacing-unit);
+
+  /* Add padding for a larger, more clickable target area */
+  padding: var(--spacing-unit);
+
+  /* Use our bright primary color for the background and light text for high contrast */
+  background-color: var(--color-primary-light);
+  color: var(--color-text-light);
+
+  /* Remove the default border that browsers often add to buttons */
+  border: none;
+
+  /* Apply a border-radius that matches our design system */
+  border-radius: var(--border-radius-sm);
+  
+  /* Change the mouse cursor to a pointer on hover to indicate it's clickable */
+  cursor: pointer;
+
+  /* Add a smooth transition for the background-color change on hover */
+  transition: background-color 0.15s ease-in-out;
+}
+
+/* 
+  Style the button when the user hovers their mouse over it.
+  This provides important interactive feedback.
+*/
+.search-section button:hover {
+  /* Use our darker primary color to make the button darken slightly on hover */
+  background-color: var(--color-primary-dark);
+}
+
+/* ... (Keep all your previous CSS code) ... */
+
+/* ========================================= */
+/*      NEW: CURRENT WEATHER STYLES          */
+/* ========================================= */
+
+/* 
+  Style the main container for the current weather display.
+  We want to give it a "card" look.
+*/
+.current-weather-section {
+  /* Use our predefined card background color (white) */
+  background-color: var(--color-bg-card);
+  
+  /* Apply a border-radius to match our design system's rounded corners */
+  border-radius: var(--border-radius-md);
+  
+  /* Add a subtle border to help the card stand out from the page background */
+  border: 1px solid var(--color-border);
+  
+  /* Add generous padding inside the card so the content has room to breathe.
+     We use a larger padding value here to make it feel like a main content area. */
+  padding: calc(var(--spacing-unit) * 2);
+}
+
+/* 
+  Style the main heading (city name and date) within the current weather card.
+  This should be the most prominent piece of text.
+*/
+.current-weather-section h2 {
+  /* Use a large font size to establish it as the primary piece of information */
+  font-size: 2.5rem; /* 1rem is typically 16px, so this is ~40px */
+  
+  /* Use a heavy font weight to make it bold and important */
+  font-weight: 700;
+  
+  /* Add some space below the heading to separate it from the weather data points */
+  margin-bottom: var(--spacing-unit);
+}
+
+/* 
+  Style the paragraph tags that hold the individual weather data points.
+  These are important but secondary to the main heading.
+*/
+.current-weather-section p {
+  /* Use a slightly larger font size than the default body text for better readability */
+  font-size: 1.1rem; /* ~17.6px */
+  
+  /* Add a small amount of space between each data point (e.g., between Temp and Humidity) */
+  margin-bottom: calc(var(--spacing-unit) / 2); /* This will be 0.5rem or ~8px */
+}
+
+/* 
+  A small but important detail: remove the bottom margin from the very last paragraph
+  inside the section to prevent extra, unnecessary space at the bottom of the card.
+*/
+.current-weather-section p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ... (Keep all your previous CSS code) ... */
+
+/* ========================================= */
+/*      NEW: FORECAST STYLES                 */
+/* ========================================= */
+
+/* First, let's style the heading for this section to be consistent */
+.forecast-section h2 {
+  /* Match the font size and weight of the other main content heading */
+  font-size: 1.5rem; /* ~24px */
+  font-weight: 700;
+  margin-bottom: var(--spacing-unit);
+}
+
+/* 
+  This is the container that will hold our 5 forecast cards.
+  We will use Flexbox to arrange the cards horizontally.
+*/
+.forecast-cards-container {
+  /* 1. This is the magic! We declare this div a flex container. */
+  display: flex;
+
+  /* 2. This property defines the space between our flex items (the cards). */
+  gap: var(--spacing-unit);
+}
+
+/* 
+  This is the style for a SINGLE forecast card.
+  This class will be added by JavaScript to each dynamically created card.
+*/
+.forecast-card {
+  /* 
+    3. flex: 1; is a powerful shorthand. It tells each card to grow and take up an
+       equal amount of the available space within the flex container. This ensures
+       all 5 cards neatly fill the width of the main content area.
+  */
+  flex: 1;
+
+  /* Apply the same card styling as the current weather section for consistency */
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-unit);
+
+  /* Center the text inside each card for a clean, uniform look */
+  text-align: center;
+}
+
+/* 
+  Style the content INSIDE our future cards.
+  We are defining rules for the elements our JavaScript will create.
+*/
+
+/* Style the date (which we'll probably make an <h3> in our JS) */
+.forecast-card h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* We can add a placeholder for a future weather icon */
+.forecast-card .weather-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0.5rem auto; /* Center the icon horizontally */
+  background-color: #eee; /* A temporary placeholder color */
+}
+
+/* Style the temperature and other data points */
+.forecast-card p {
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+}

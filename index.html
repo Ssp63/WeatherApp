@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Weather Dashboard</title>
+    <!-- 
+      NEW: Link to our external CSS stylesheet.
+      - rel="stylesheet": This attribute is required and specifies the relationship between the HTML document and the linked file. Here, it's a stylesheet.
+      - href="style.css": This specifies the path (hypertext reference) to the file. Since style.css is in the same folder as index.html, we only need the filename. This is called a "relative path".
+    -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Live Weather Dashboard</h1>
+  </header>
+
+  <main>
+    <section class="search-section">
+      <form>
+        <input type="text" placeholder="Enter a city name" />
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <!-- 
+      NEW: The section for displaying the current weather.
+      We'll give it a class for potential styling and an id to easily find the container.
+    -->
+    <section id="current-weather" class="current-weather-section">
+      <!-- 
+        An <h2> is used for the main heading within this section.
+        We give it an 'id' so our JavaScript can update the city name and date dynamically.
+      -->
+      <h2 id="city-name-date">City Name (Date)</h2>
+
+      <!--
+        A general container for the weather data points. Using a div here
+        helps to group related information for easier layout with CSS later.
+      -->
+      <div class="weather-data">
+        <!-- 
+          Each of these <p> (paragraph) elements holds a specific piece of weather data.
+          They are given unique 'id's because our JavaScript will need to target each one
+          individually to update its content with data from the API.
+        -->
+        <p id="temperature">Temperature: --</p>
+        <p id="humidity">Humidity: --</p>
+        <p id="wind-speed">Wind Speed: --</p>
+      </div>
+
+      
+    </section>
+     <section id="forecast" class="forecast-section">
+      <h2>5-Day Forecast</h2>
+      <!--
+        This is the crucial container element.
+        - It has an 'id' ("forecast-container") so our JavaScript can easily find it.
+        - It's currently empty because the forecast cards will be generated and
+          injected into this div by our script later on.
+        - The comment inside is a helpful note for developers and is ignored by the browser.
+      -->
+      <div id="forecast-container" class="forecast-cards-container">
+        <!-- Forecast cards will be dynamically inserted here by JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Our script tag remains at the very end of the body -->
+  <script src="script.js"></script>
+</body>
+
+</html>
