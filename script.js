@@ -17,7 +17,7 @@ function displayCurrentWeather(data) {
   cityNameEl.textContent = `${data.name} (${currentDate})`;
   tempValueEl.textContent = `${Math.round(data.main.temp)}`;
   humidityEl.textContent = `Humidity: ${data.main.humidity}%`;
-  windSpeedEl.textContent = `Wind ${data.wind.speed} Km/h`;
+  windSpeedEl.textContent = `Wind: ${data.wind.speed} Km/h`;
 }
 
 function displayForecast(forecastList) {
